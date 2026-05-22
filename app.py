@@ -52,7 +52,7 @@ FUNCTIONS = {
     "x³ - 2x - 5": f5
 }
 
-# Complete HTML with Mathematical Discussion section
+# Complete HTML with CORRECTED Mathematical Discussion
 HTML = """
 <!DOCTYPE html>
 <html>
@@ -115,6 +115,13 @@ HTML = """
             font-size: 18px;
             text-align: center;
         }
+        .formula {
+            font-size: 24px;
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -123,23 +130,19 @@ HTML = """
         <p>A root-finding algorithm that combines the bisection and secant methods.</p>
     </div>
 
-    <!-- ============================================= -->
-    <!-- MATHEMATICAL DISCUSSION SECTION - FIGURE 1    -->
-    <!-- ============================================= -->
+    <!-- MATHEMATICAL DISCUSSION SECTION - FIGURE 1 -->
     <div class="card">
         <h2>📖 Mathematical Discussion</h2>
         
-        <div class="math">
-            <p><strong>Formula:</strong></p>
-            \[
-            c = \frac{a \cdot f(b) - b \cdot f(a)}{f(b) - f(a)}
-            \]
+        <div class="formula">
+            <strong>Formula:</strong>
+            <p>\[ c = \frac{a \cdot f(b) - b \cdot f(a)}{f(b) - f(a)} \]</p>
         </div>
         
         <p><strong>Algorithm Steps:</strong></p>
         <ol>
             <li>Find two points \(a\) and \(b\) such that \(f(a)\) and \(f(b)\) have opposite signs</li>
-            <li>Calculate \(c\) using the formula: \(c = \frac{a f(b) - b f(a)}{f(b) - f(a)}\)</li>
+            <li>Calculate \(c\) using the formula: \(c = \frac{a \cdot f(b) - b \cdot f(a)}{f(b) - f(a)}\)</li>
             <li>Evaluate \(f(c)\)</li>
             <li>If \(|f(c)| &lt; \text{tolerance}\), \(c\) is the root</li>
             <li>If \(f(a) \cdot f(c) &lt; 0\), set \(b = c\), otherwise set \(a = c\)</li>
@@ -149,9 +152,7 @@ HTML = """
         <p><strong>Convergence:</strong> The Regula Falsi method converges linearly, but is often faster than the bisection method for many functions.</p>
     </div>
 
-    <!-- ============================================= -->
-    <!-- WORKED EXAMPLE 1 - FIGURE 2                   -->
-    <!-- ============================================= -->
+    <!-- WORKED EXAMPLE 1 - FIGURE 2 -->
     <div class="card">
         <h2>📝 Worked Example 1: \(x^3 - x - 2 = 0\)</h2>
         <div class="example">
@@ -175,9 +176,7 @@ HTML = """
         </div>
     </div>
 
-    <!-- ============================================= -->
-    <!-- WORKED EXAMPLE 2 - FIGURE 3                   -->
-    <!-- ============================================= -->
+    <!-- WORKED EXAMPLE 2 - FIGURE 3 -->
     <div class="card">
         <h2>📝 Worked Example 2: \(x^2 - 4 = 0\)</h2>
         <div class="example">
@@ -200,9 +199,7 @@ HTML = """
         </div>
     </div>
 
-    <!-- ============================================= -->
-    <!-- CALCULATOR - FIGURES 4 & 5                    -->
-    <!-- ============================================= -->
+    <!-- CALCULATOR - FIGURES 4 & 5 -->
     <div class="card">
         <h2>🧮 Interactive Calculator</h2>
         <form method="POST">
@@ -254,8 +251,12 @@ def index():
                     <p><strong>Root:</strong> x = {root:.8f}</p>
                     <p><strong>Iterations:</strong> {iterations}</p>
                     <h3>Iteration Details:</h3>
-                    <table>
-                        <tr><th>Iter</th><th>a</th><th>b</th><th>c</th><th>f(c)</th></tr>
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr><th>Iter</th><th>a</th><th>b</th><th>c</th><th>f(c)</th></tr>
+                            </thead>
+                            <tbody>
                 '''
                 for step in steps:
                     result_html += f'''
@@ -267,7 +268,12 @@ def index():
                             <td>{step["f_c"]}</td>
                         </tr>
                     '''
-                result_html += '</table></div>'
+                result_html += '''
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                '''
             else:
                 result_html = f'<div class="error"><p>Error: f({a}) and f({b}) must have opposite signs!</p></div>'
                 
