@@ -52,84 +52,165 @@ FUNCTIONS = {
     "x³ - 2x - 5": f5
 }
 
-# HTML with SIMPLE formatting - NO complex LaTeX
+# GIRLY COLOR SCHEME HTML - Pink & Purple Theme 💕
 HTML = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Regula Falsi Method</title>
+    <title>Regula Falsi Method ✨</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', 'Quicksand', Arial, sans-serif;
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
-            background: #f0f0f0;
+            background: linear-gradient(135deg, #ffe9f4 0%, #ffe0f0 50%, #fce4ec 100%);
+            min-height: 100vh;
         }
         .card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15);
+            border: 1px solid rgba(255, 192, 203, 0.5);
+            transition: transform 0.2s;
         }
-        h1 { color: #333; }
-        h2 { color: #555; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
-        h3 { color: #666; margin-top: 15px; }
+        .card:hover {
+            transform: translateY(-3px);
+        }
+        h1 { 
+            color: #d43f8d; 
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+        }
+        h2 { 
+            color: #e85d9e; 
+            border-bottom: 3px solid #ffb3d9;
+            padding-bottom: 12px;
+            font-size: 1.5em;
+        }
+        h3 { 
+            color: #c4458a; 
+            margin-top: 15px;
+        }
         input, select, button {
-            padding: 10px;
-            margin: 5px 0;
+            padding: 12px;
+            margin: 8px 0;
             width: 100%;
             max-width: 300px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 2px solid #ffc0cb;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s;
+            background: white;
+        }
+        input:focus, select:focus {
+            border-color: #e85d9e;
+            outline: none;
+            box-shadow: 0 0 8px rgba(232, 93, 158, 0.3);
         }
         button {
-            background: #007bff;
+            background: linear-gradient(135deg, #e85d9e 0%, #c4458a 100%);
             color: white;
             border: none;
             cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            width: auto;
+            min-width: 150px;
         }
-        button:hover { background: #0056b3; }
+        button:hover {
+            background: linear-gradient(135deg, #f06aaa 0%, #d84f96 100%);
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(232, 93, 158, 0.3);
+        }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 15px;
+            border-radius: 15px;
+            overflow: hidden;
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            border: 1px solid #ffd9e8;
+            padding: 10px;
             text-align: center;
         }
-        th { background: #007bff; color: white; }
-        .result { background: #d4edda; padding: 15px; border-radius: 5px; margin-top: 15px; }
-        .error { background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-top: 15px; }
-        .example { background: #e7f3ff; padding: 15px; border-radius: 5px; margin: 10px 0; }
-        .math {
-            background: #f8f9fa;
+        th { 
+            background: linear-gradient(135deg, #f8bbd0 0%, #f48fb1 100%);
+            color: #6b2e4a;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #fff5f8;
+        }
+        tr:hover {
+            background-color: #ffe0ef;
+        }
+        .result { 
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            padding: 18px;
+            border-radius: 20px;
+            margin-top: 20px;
+            border-left: 6px solid #81c784;
+        }
+        .error { 
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            color: #c62828;
+            padding: 15px;
+            border-radius: 20px;
+            margin-top: 15px;
+            border-left: 6px solid #e57373;
+        }
+        .example { 
+            background: linear-gradient(135deg, #f3e5f5 0%, #ede7f6 100%);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 20px;
+            margin: 15px 0;
+            border: 1px solid #e1bee7;
+        }
+        .math {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 100%);
+            padding: 20px;
+            border-radius: 20px;
             font-size: 18px;
             text-align: center;
             font-family: monospace;
+            border: 1px solid #ffc0cb;
         }
         .formula-box {
-            background: #e8f4f8;
-            padding: 15px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            padding: 20px;
+            border-radius: 20px;
             margin: 15px 0;
             text-align: center;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
+            color: #ad1457;
+        }
+        label {
+            font-weight: bold;
+            color: #ad1457;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        ::placeholder {
+            color: #ffb6c1;
+        }
+        .heart {
+            color: #e85d9e;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>📐 Regula Falsi (False Position) Method</h1>
-        <p>A root-finding algorithm that combines the bisection and secant methods.</p>
+    <div class="card" style="text-align: center;">
+        <h1>📐 Regula Falsi (False Position) Method 💕</h1>
+        <p>A root-finding algorithm that combines the bisection and secant methods. ✨</p>
+        <p class="heart">🌸 mathematics is beautiful 🌸</p>
     </div>
 
     <!-- FIGURE 1: MATHEMATICAL DISCUSSION -->
@@ -137,11 +218,11 @@ HTML = """
         <h2>📖 Mathematical Discussion</h2>
         
         <div class="formula-box">
-            <strong>Formula:</strong><br>
+            <strong>✨ Formula ✨</strong><br>
             c = [a × f(b) - b × f(a)] / [f(b) - f(a)]
         </div>
         
-        <p><strong>Algorithm Steps:</strong></p>
+        <p><strong>🎀 Algorithm Steps:</strong></p>
         <ol>
             <li>Find two points a and b such that f(a) and f(b) have opposite signs</li>
             <li>Calculate c using the formula: c = [a × f(b) - b × f(a)] / [f(b) - f(a)]</li>
@@ -151,7 +232,7 @@ HTML = """
             <li>Repeat steps 2-5 until convergence</li>
         </ol>
         
-        <p><strong>Convergence:</strong> The Regula Falsi method converges linearly, but is often faster than the bisection method for many functions.</p>
+        <p><strong>💖 Convergence:</strong> The Regula Falsi method converges linearly, but is often faster than the bisection method for many functions.</p>
     </div>
 
     <!-- FIGURE 2: WORKED EXAMPLE 1 -->
@@ -159,12 +240,11 @@ HTML = """
         <h2>📝 Worked Example 1: x³ - x - 2 = 0</h2>
         <div class="example">
             <p><strong>Step 1:</strong> Find interval [a, b] where f(a) and f(b) have opposite signs.</p>
-            <p>f(1) = 1³ - 1 - 2 = -2 (negative)</p>
-            <p>f(2) = 8 - 2 - 2 = 4 (positive)</p>
+            <p>🌸 f(1) = 1³ - 1 - 2 = -2 (negative)</p>
+            <p>🌸 f(2) = 8 - 2 - 2 = 4 (positive)</p>
             <p>✓ Root lies in [1, 2] since signs are opposite.</p>
             
             <p><strong>Step 2:</strong> Apply Regula Falsi formula:</p>
-            <p>c = [a × f(b) - b × f(a)] / [f(b) - f(a)]</p>
             <p>c = [1 × 4 - 2 × (-2)] / [4 - (-2)] = [4 + 4] / 6 = 8/6 = 1.3333</p>
             
             <p><strong>Step 3:</strong> Evaluate f(c):</p>
@@ -174,8 +254,8 @@ HTML = """
             
             <p><strong>Step 5:</strong> Continue iterations until convergence:</p>
             <p>After several iterations, the root converges to:</p>
-            <p><strong>Final Root:</strong> x ≈ 1.52137971</p>
-            <p><strong>Verification:</strong> f(1.52138) ≈ 0 ✓</p>
+            <p><strong>🎯 Final Root:</strong> x ≈ 1.52137971</p>
+            <p>💜 Verification: f(1.52138) ≈ 0 ✓</p>
         </div>
     </div>
 
@@ -184,8 +264,8 @@ HTML = """
         <h2>📝 Worked Example 2: x² - 4 = 0</h2>
         <div class="example">
             <p><strong>Step 1:</strong> Find interval [a, b] with sign change.</p>
-            <p>f(1) = 1 - 4 = -3 (negative)</p>
-            <p>f(3) = 9 - 4 = 5 (positive)</p>
+            <p>🌸 f(1) = 1 - 4 = -3 (negative)</p>
+            <p>🌸 f(3) = 9 - 4 = 5 (positive)</p>
             <p>✓ Root lies in [1, 3].</p>
             
             <p><strong>Step 2:</strong> First iteration:</p>
@@ -197,16 +277,16 @@ HTML = """
             <p>f(1.9474) = 3.792 - 4 = -0.208</p>
             
             <p><strong>Step 4:</strong> Continue iterations:</p>
-            <p><strong>Final Root:</strong> x = 2.00000000</p>
-            <p><strong>Verification:</strong> f(2) = 4 - 4 = 0 ✓</p>
+            <p><strong>🎯 Final Root:</strong> x = 2.00000000</p>
+            <p>💜 Verification: f(2) = 4 - 4 = 0 ✓</p>
         </div>
     </div>
 
     <!-- FIGURES 4 & 5: CALCULATOR -->
     <div class="card">
-        <h2>🧮 Interactive Calculator</h2>
+        <h2>🧮 Interactive Calculator ✨</h2>
         <form method="POST">
-            <label>Select Function:</label>
+            <label>🎀 Select Function:</label>
             <select name="function">
                 <option>x³ - x - 2</option>
                 <option>x² - 4</option>
@@ -215,16 +295,16 @@ HTML = """
                 <option>x³ - 2x - 5</option>
             </select>
             
-            <label>Lower bound (a):</label>
-            <input type="number" name="a" step="any" required>
+            <label>📐 Lower bound (a):</label>
+            <input type="number" name="a" step="any" required placeholder="e.g., 1">
             
-            <label>Upper bound (b):</label>
-            <input type="number" name="b" step="any" required>
+            <label>📐 Upper bound (b):</label>
+            <input type="number" name="b" step="any" required placeholder="e.g., 2">
             
-            <label>Tolerance:</label>
-            <input type="number" name="tol" step="any" value="1e-6">
+            <label>⚡ Tolerance:</label>
+            <input type="number" name="tol" step="any" value="1e-6" placeholder="0.000001">
             
-            <button type="submit">Calculate Root</button>
+            <button type="submit">💖 Calculate Root 💖</button>
         </form>
         
         {result_html}
@@ -250,10 +330,10 @@ def index():
             if root is not None:
                 result_html = f'''
                 <div class="result">
-                    <h3>✅ Root Found!</h3>
-                    <p><strong>Root:</strong> x = {root:.8f}</p>
-                    <p><strong>Iterations:</strong> {iterations}</p>
-                    <h3>Iteration Details:</h3>
+                    <h3>💖 Root Found! 💖</h3>
+                    <p><strong>🎯 Root:</strong> x = {root:.8f}</p>
+                    <p><strong>✨ Iterations:</strong> {iterations}</p>
+                    <h3>📊 Iteration Details:</h3>
                     <div style="overflow-x: auto;">
                         <table>
                             <thead>
@@ -278,10 +358,10 @@ def index():
                 </div>
                 '''
             else:
-                result_html = f'<div class="error"><p>Error: f({a}) and f({b}) must have opposite signs!</p></div>'
+                result_html = f'<div class="error"><p>💔 Error: f({a}) and f({b}) must have opposite signs! Please choose different a and b values. 💔</p></div>'
                 
         except Exception as e:
-            result_html = f'<div class="error"><p>Error: {str(e)}</p></div>'
+            result_html = f'<div class="error"><p>💔 Error: {str(e)} 💔</p></div>'
     
     return HTML.replace('{result_html}', result_html)
 
