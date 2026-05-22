@@ -52,7 +52,7 @@ FUNCTIONS = {
     "x³ - 2x - 5": f5
 }
 
-# Complete HTML with CORRECTED Mathematical Discussion
+# HTML with SIMPLE formatting - NO complex LaTeX
 HTML = """
 <!DOCTYPE html>
 <html>
@@ -60,7 +60,6 @@ HTML = """
     <title>Regula Falsi Method</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -114,13 +113,16 @@ HTML = """
             border-radius: 10px;
             font-size: 18px;
             text-align: center;
+            font-family: monospace;
         }
-        .formula {
-            font-size: 24px;
+        .formula-box {
             background: #e8f4f8;
             padding: 15px;
             border-radius: 8px;
-            margin: 10px 0;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -130,76 +132,77 @@ HTML = """
         <p>A root-finding algorithm that combines the bisection and secant methods.</p>
     </div>
 
-    <!-- MATHEMATICAL DISCUSSION SECTION - FIGURE 1 -->
+    <!-- FIGURE 1: MATHEMATICAL DISCUSSION -->
     <div class="card">
         <h2>📖 Mathematical Discussion</h2>
         
-        <div class="formula">
-            <strong>Formula:</strong>
-            <p>\[ c = \frac{a \cdot f(b) - b \cdot f(a)}{f(b) - f(a)} \]</p>
+        <div class="formula-box">
+            <strong>Formula:</strong><br>
+            c = [a × f(b) - b × f(a)] / [f(b) - f(a)]
         </div>
         
         <p><strong>Algorithm Steps:</strong></p>
         <ol>
-            <li>Find two points \(a\) and \(b\) such that \(f(a)\) and \(f(b)\) have opposite signs</li>
-            <li>Calculate \(c\) using the formula: \(c = \frac{a \cdot f(b) - b \cdot f(a)}{f(b) - f(a)}\)</li>
-            <li>Evaluate \(f(c)\)</li>
-            <li>If \(|f(c)| &lt; \text{tolerance}\), \(c\) is the root</li>
-            <li>If \(f(a) \cdot f(c) &lt; 0\), set \(b = c\), otherwise set \(a = c\)</li>
+            <li>Find two points a and b such that f(a) and f(b) have opposite signs</li>
+            <li>Calculate c using the formula: c = [a × f(b) - b × f(a)] / [f(b) - f(a)]</li>
+            <li>Evaluate f(c)</li>
+            <li>If |f(c)| is less than tolerance, c is the root</li>
+            <li>If f(a) × f(c) is less than 0, set b = c, otherwise set a = c</li>
             <li>Repeat steps 2-5 until convergence</li>
         </ol>
         
         <p><strong>Convergence:</strong> The Regula Falsi method converges linearly, but is often faster than the bisection method for many functions.</p>
     </div>
 
-    <!-- WORKED EXAMPLE 1 - FIGURE 2 -->
+    <!-- FIGURE 2: WORKED EXAMPLE 1 -->
     <div class="card">
-        <h2>📝 Worked Example 1: \(x^3 - x - 2 = 0\)</h2>
+        <h2>📝 Worked Example 1: x³ - x - 2 = 0</h2>
         <div class="example">
-            <p><strong>Step 1:</strong> Find interval \([a,b]\) where \(f(a)\) and \(f(b)\) have opposite signs.</p>
-            <p>\(f(1) = 1^3 - 1 - 2 = -2\) (negative)</p>
-            <p>\(f(2) = 8 - 2 - 2 = 4\) (positive)</p>
-            <p>✓ Root lies in \([1, 2]\) since signs are opposite.</p>
+            <p><strong>Step 1:</strong> Find interval [a, b] where f(a) and f(b) have opposite signs.</p>
+            <p>f(1) = 1³ - 1 - 2 = -2 (negative)</p>
+            <p>f(2) = 8 - 2 - 2 = 4 (positive)</p>
+            <p>✓ Root lies in [1, 2] since signs are opposite.</p>
             
             <p><strong>Step 2:</strong> Apply Regula Falsi formula:</p>
-            <p>\(c = \frac{1 \times 4 - 2 \times (-2)}{4 - (-2)} = \frac{4 + 4}{6} = \frac{8}{6} = 1.3333\)</p>
+            <p>c = [a × f(b) - b × f(a)] / [f(b) - f(a)]</p>
+            <p>c = [1 × 4 - 2 × (-2)] / [4 - (-2)] = [4 + 4] / 6 = 8/6 = 1.3333</p>
             
-            <p><strong>Step 3:</strong> Evaluate \(f(c)\):</p>
-            <p>\(f(1.3333) = (1.3333)^3 - 1.3333 - 2 = 2.370 - 1.3333 - 2 = -0.9633\)</p>
+            <p><strong>Step 3:</strong> Evaluate f(c):</p>
+            <p>f(1.3333) = (1.3333)³ - 1.3333 - 2 = 2.370 - 1.3333 - 2 = -0.9633</p>
             
-            <p><strong>Step 4:</strong> Update interval: Since \(f(1.3333)\) is negative and \(f(2)\) is positive, new interval is \([1.3333, 2]\)</p>
+            <p><strong>Step 4:</strong> Update interval: Since f(1.3333) is negative and f(2) is positive, new interval is [1.3333, 2]</p>
             
             <p><strong>Step 5:</strong> Continue iterations until convergence:</p>
             <p>After several iterations, the root converges to:</p>
-            <p><strong>Final Root:</strong> \(x \approx 1.52137971\)</p>
-            <p><strong>Verification:</strong> \(f(1.52138) \approx 0\) ✓</p>
+            <p><strong>Final Root:</strong> x ≈ 1.52137971</p>
+            <p><strong>Verification:</strong> f(1.52138) ≈ 0 ✓</p>
         </div>
     </div>
 
-    <!-- WORKED EXAMPLE 2 - FIGURE 3 -->
+    <!-- FIGURE 3: WORKED EXAMPLE 2 -->
     <div class="card">
-        <h2>📝 Worked Example 2: \(x^2 - 4 = 0\)</h2>
+        <h2>📝 Worked Example 2: x² - 4 = 0</h2>
         <div class="example">
-            <p><strong>Step 1:</strong> Find interval \([a,b]\) with sign change.</p>
-            <p>\(f(1) = 1 - 4 = -3\) (negative)</p>
-            <p>\(f(3) = 9 - 4 = 5\) (positive)</p>
-            <p>✓ Root lies in \([1, 3]\).</p>
+            <p><strong>Step 1:</strong> Find interval [a, b] with sign change.</p>
+            <p>f(1) = 1 - 4 = -3 (negative)</p>
+            <p>f(3) = 9 - 4 = 5 (positive)</p>
+            <p>✓ Root lies in [1, 3].</p>
             
             <p><strong>Step 2:</strong> First iteration:</p>
-            <p>\(c = \frac{1 \times 5 - 3 \times (-3)}{5 - (-3)} = \frac{5 + 9}{8} = \frac{14}{8} = 1.75\)</p>
-            <p>\(f(1.75) = (1.75)^2 - 4 = 3.0625 - 4 = -0.9375\)</p>
+            <p>c = [1 × 5 - 3 × (-3)] / [5 - (-3)] = [5 + 9] / 8 = 14/8 = 1.75</p>
+            <p>f(1.75) = (1.75)² - 4 = 3.0625 - 4 = -0.9375</p>
             
-            <p><strong>Step 3:</strong> Second iteration using \([1.75, 3]\):</p>
-            <p>\(c = \frac{1.75 \times 5 - 3 \times (-0.9375)}{5 - (-0.9375)} = \frac{8.75 + 2.8125}{5.9375} = \frac{11.5625}{5.9375} = 1.9474\)</p>
-            <p>\(f(1.9474) = 3.792 - 4 = -0.208\)</p>
+            <p><strong>Step 3:</strong> Second iteration using [1.75, 3]:</p>
+            <p>c = [1.75 × 5 - 3 × (-0.9375)] / [5 - (-0.9375)] = [8.75 + 2.8125] / 5.9375 = 11.5625/5.9375 = 1.9474</p>
+            <p>f(1.9474) = 3.792 - 4 = -0.208</p>
             
             <p><strong>Step 4:</strong> Continue iterations:</p>
-            <p><strong>Final Root:</strong> \(x = 2.00000000\)</p>
-            <p><strong>Verification:</strong> \(f(2) = 4 - 4 = 0\) ✓</p>
+            <p><strong>Final Root:</strong> x = 2.00000000</p>
+            <p><strong>Verification:</strong> f(2) = 4 - 4 = 0 ✓</p>
         </div>
     </div>
 
-    <!-- CALCULATOR - FIGURES 4 & 5 -->
+    <!-- FIGURES 4 & 5: CALCULATOR -->
     <div class="card">
         <h2>🧮 Interactive Calculator</h2>
         <form method="POST">
