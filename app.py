@@ -52,7 +52,7 @@ FUNCTIONS = {
     "x³ - 2x - 5": f5
 }
 
-# Simple HTML (no complex templates)
+# Complete HTML with Mathematical Discussion section
 HTML = """
 <!DOCTYPE html>
 <html>
@@ -64,7 +64,7 @@ HTML = """
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             background: #f0f0f0;
@@ -76,7 +76,9 @@ HTML = """
             margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        h1, h2 { color: #333; }
+        h1 { color: #333; }
+        h2 { color: #555; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        h3 { color: #666; margin-top: 15px; }
         input, select, button {
             padding: 10px;
             margin: 5px 0;
@@ -106,6 +108,13 @@ HTML = """
         .result { background: #d4edda; padding: 15px; border-radius: 5px; margin-top: 15px; }
         .error { background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-top: 15px; }
         .example { background: #e7f3ff; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .math {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -114,24 +123,90 @@ HTML = """
         <p>A root-finding algorithm that combines the bisection and secant methods.</p>
     </div>
 
+    <!-- ============================================= -->
+    <!-- MATHEMATICAL DISCUSSION SECTION - FIGURE 1    -->
+    <!-- ============================================= -->
     <div class="card">
-        <h2>📝 Example 1: x³ - x - 2 = 0</h2>
-        <div class="example">
-            <p>f(1) = -2, f(2) = 4 → Root in [1,2]</p>
-            <p>After iterations: Root ≈ <strong>1.52138</strong></p>
+        <h2>📖 Mathematical Discussion</h2>
+        
+        <div class="math">
+            <p><strong>Formula:</strong></p>
+            \[
+            c = \frac{a \cdot f(b) - b \cdot f(a)}{f(b) - f(a)}
+            \]
         </div>
         
-        <h2>📝 Example 2: x² - 4 = 0</h2>
+        <p><strong>Algorithm Steps:</strong></p>
+        <ol>
+            <li>Find two points \(a\) and \(b\) such that \(f(a)\) and \(f(b)\) have opposite signs</li>
+            <li>Calculate \(c\) using the formula: \(c = \frac{a f(b) - b f(a)}{f(b) - f(a)}\)</li>
+            <li>Evaluate \(f(c)\)</li>
+            <li>If \(|f(c)| &lt; \text{tolerance}\), \(c\) is the root</li>
+            <li>If \(f(a) \cdot f(c) &lt; 0\), set \(b = c\), otherwise set \(a = c\)</li>
+            <li>Repeat steps 2-5 until convergence</li>
+        </ol>
+        
+        <p><strong>Convergence:</strong> The Regula Falsi method converges linearly, but is often faster than the bisection method for many functions.</p>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- WORKED EXAMPLE 1 - FIGURE 2                   -->
+    <!-- ============================================= -->
+    <div class="card">
+        <h2>📝 Worked Example 1: \(x^3 - x - 2 = 0\)</h2>
         <div class="example">
-            <p>f(1) = -3, f(3) = 5 → Root in [1,3]</p>
-            <p>After iterations: Root = <strong>2.00000</strong></p>
+            <p><strong>Step 1:</strong> Find interval \([a,b]\) where \(f(a)\) and \(f(b)\) have opposite signs.</p>
+            <p>\(f(1) = 1^3 - 1 - 2 = -2\) (negative)</p>
+            <p>\(f(2) = 8 - 2 - 2 = 4\) (positive)</p>
+            <p>✓ Root lies in \([1, 2]\) since signs are opposite.</p>
+            
+            <p><strong>Step 2:</strong> Apply Regula Falsi formula:</p>
+            <p>\(c = \frac{1 \times 4 - 2 \times (-2)}{4 - (-2)} = \frac{4 + 4}{6} = \frac{8}{6} = 1.3333\)</p>
+            
+            <p><strong>Step 3:</strong> Evaluate \(f(c)\):</p>
+            <p>\(f(1.3333) = (1.3333)^3 - 1.3333 - 2 = 2.370 - 1.3333 - 2 = -0.9633\)</p>
+            
+            <p><strong>Step 4:</strong> Update interval: Since \(f(1.3333)\) is negative and \(f(2)\) is positive, new interval is \([1.3333, 2]\)</p>
+            
+            <p><strong>Step 5:</strong> Continue iterations until convergence:</p>
+            <p>After several iterations, the root converges to:</p>
+            <p><strong>Final Root:</strong> \(x \approx 1.52137971\)</p>
+            <p><strong>Verification:</strong> \(f(1.52138) \approx 0\) ✓</p>
         </div>
     </div>
 
+    <!-- ============================================= -->
+    <!-- WORKED EXAMPLE 2 - FIGURE 3                   -->
+    <!-- ============================================= -->
     <div class="card">
-        <h2>🧮 Calculator</h2>
+        <h2>📝 Worked Example 2: \(x^2 - 4 = 0\)</h2>
+        <div class="example">
+            <p><strong>Step 1:</strong> Find interval \([a,b]\) with sign change.</p>
+            <p>\(f(1) = 1 - 4 = -3\) (negative)</p>
+            <p>\(f(3) = 9 - 4 = 5\) (positive)</p>
+            <p>✓ Root lies in \([1, 3]\).</p>
+            
+            <p><strong>Step 2:</strong> First iteration:</p>
+            <p>\(c = \frac{1 \times 5 - 3 \times (-3)}{5 - (-3)} = \frac{5 + 9}{8} = \frac{14}{8} = 1.75\)</p>
+            <p>\(f(1.75) = (1.75)^2 - 4 = 3.0625 - 4 = -0.9375\)</p>
+            
+            <p><strong>Step 3:</strong> Second iteration using \([1.75, 3]\):</p>
+            <p>\(c = \frac{1.75 \times 5 - 3 \times (-0.9375)}{5 - (-0.9375)} = \frac{8.75 + 2.8125}{5.9375} = \frac{11.5625}{5.9375} = 1.9474\)</p>
+            <p>\(f(1.9474) = 3.792 - 4 = -0.208\)</p>
+            
+            <p><strong>Step 4:</strong> Continue iterations:</p>
+            <p><strong>Final Root:</strong> \(x = 2.00000000\)</p>
+            <p><strong>Verification:</strong> \(f(2) = 4 - 4 = 0\) ✓</p>
+        </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- CALCULATOR - FIGURES 4 & 5                    -->
+    <!-- ============================================= -->
+    <div class="card">
+        <h2>🧮 Interactive Calculator</h2>
         <form method="POST">
-            <label>Function:</label>
+            <label>Select Function:</label>
             <select name="function">
                 <option>x³ - x - 2</option>
                 <option>x² - 4</option>
@@ -140,10 +215,10 @@ HTML = """
                 <option>x³ - 2x - 5</option>
             </select>
             
-            <label>a (lower bound):</label>
+            <label>Lower bound (a):</label>
             <input type="number" name="a" step="any" required>
             
-            <label>b (upper bound):</label>
+            <label>Upper bound (b):</label>
             <input type="number" name="b" step="any" required>
             
             <label>Tolerance:</label>
@@ -172,7 +247,7 @@ def index():
             f = FUNCTIONS[func_name]
             root, iterations, steps = regula_falsi(f, a, b, tol)
             
-            if root:
+            if root is not None:
                 result_html = f'''
                 <div class="result">
                     <h3>✅ Root Found!</h3>
@@ -182,7 +257,7 @@ def index():
                     <table>
                         <tr><th>Iter</th><th>a</th><th>b</th><th>c</th><th>f(c)</th></tr>
                 '''
-                for step in steps[:10]:  # Show first 10 iterations
+                for step in steps:
                     result_html += f'''
                         <tr>
                             <td>{step["iteration"]}</td>
@@ -201,5 +276,4 @@ def index():
     
     return HTML.replace('{result_html}', result_html)
 
-# This is required for Vercel
 app.debug = False
